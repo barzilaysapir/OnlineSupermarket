@@ -49,7 +49,7 @@ async function autoLogin(userId) {
     let usersLoginResult;
 
     try {
-        usersLoginResult = await connection.executeWithParameters(sql, parameters);
+        usersLoginResult = await connection.executeWithParameters(sql, userId);
 
     } catch (err) {
         throw new ServerError(ErrorType.GENERAL_ERROR, JSON.stringify(userId), err);
