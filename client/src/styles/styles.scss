@@ -1,0 +1,65 @@
+@import "base";
+@import "layout";
+@import "components";
+@import "material";
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+  position: fixed;
+
+  font-family: $font-primary;
+  color: $dark-primary;
+  line-height: 1.6;
+
+  > * {
+    font-family: $font-primary;
+  }
+}
+
+button {
+  font-family: $font-primary;
+  outline: none;
+}
+
+// SCROLLER
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.568);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba($dark-primary, 0.7);
+}
+
+// AUTO FILL INPUT
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  width: max-content;
+  box-shadow: 0 0 0px 1000px rgb(255, 233, 246) inset;
+  border: none;
+}
+
+// NUMBERS INPUT ARROWS
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}

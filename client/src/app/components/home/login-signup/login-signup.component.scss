@@ -1,0 +1,49 @@
+@import "../../../../styles/base";
+
+:host {
+  padding: 1rem;
+
+  @media only screen and (max-width: $bp-small) {
+    padding-bottom: 2rem;
+  }
+}
+
+.heading {
+  text-align: center;
+  font-weight: 100;
+  font-size: x-large;
+  padding: 1rem;
+
+  span {
+    &.current {
+      font-weight: bold;
+      user-select: none;
+    }
+    &:not(.current) {
+      cursor: pointer;
+    }
+  }
+}
+
+.login-form {
+  padding: 0 .5rem;
+}
+
+p,
+p *,
+mat-error {
+  font-size: small;
+  font-weight: 200;
+  font-family: $font-display;
+  text-align: center;
+
+  span {
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.btn-primary {
+  margin-top: 2rem;
+}

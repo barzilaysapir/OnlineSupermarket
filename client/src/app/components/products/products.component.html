@@ -1,0 +1,51 @@
+<app-modal
+  *ngIf="this.stateService.isShowModal"
+  [product]="product"
+  (addToCartEvent)="addToCart(product)"
+  (updateCartEvent)="updateOnCart(product)"
+  (removeFromCartEvent)="removeFromCart(product)"
+>
+</app-modal>
+
+<!---------------------------->
+
+<app-menu></app-menu>
+
+<button
+  class="btn btn-secondary"
+  *ngIf="this.stateService.path == 'admin' && this.stateService.isMobileScreen"
+  (click)="openAddProductPanel()"
+>
+  <i class="fas fa-plus"> </i>
+  Add New Product
+</button>
+
+<form class="search-wrapper" (submit)="searchProduct()">
+  <input
+    [(ngModel)]="searchInput"
+    class="search-input"
+    type="text"
+    name="search"
+    placeholder="Search.."
+  />
+  <i class="fas fa-search" (click)="searchProduct()"></i>
+</form>
+
+<!---------------------------->
+
+<div class="products">
+  <app-product-card
+    *ngFor="let product of this.productsService.products"
+    [product]="product"
+    (cardEvent)="showModal(product)"
+  >
+  </app-product-card>
+
+  <h2
+    *ngIf="
+      this.stateService.isSearching && this.productsService.products.length == 0
+    "
+  >
+    Product not found.
+  </h2>
+</div>

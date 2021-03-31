@@ -1,0 +1,238 @@
+<h1 class="heading">
+  <span [ngClass]="{ current: state == 'login' }" (click)="switchState()"
+    >Login</span
+  >
+  |
+  <span [ngClass]="{ current: state == 'signup' }" (click)="switchState()"
+    >Sign Up</span
+  >
+</h1>
+
+<!-- Success Cover -->
+<div
+  [ngClass]="this.stateService.setSuccessCoverClass()"
+  *ngIf="!this.stateService.isMobileScreen || !this.stateService.isLoggedIn"
+>
+  <i class="fas fa-check"></i>
+</div>
+
+<!-- LOGIN / First step - SIGNUP -->
+<form
+  #loginForm="ngForm"
+  *ngIf="!this.usersService.firstStepRegisterCompleted; else secondStepRegister"
+  class="form login-form"
+  (submit)="onSubmit()"
+>
+  <div class="form-field-wrapper" *ngIf="state == 'signup'">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> ID </mat-label>
+      <input
+        matInput
+        #idInput="ngModel"
+        [(ngModel)]="this.usersService.userDetails.id"
+        type="number"
+        name="id"
+        required
+      />
+      <mat-icon matSuffix> account_box </mat-icon>
+
+      <mat-error *ngIf="emailInput.touched && emailInput.errors?.pattern">
+        Email
+        <strong>not valid</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-wrapper">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Email </mat-label>
+      <input
+        matInput
+        #emailInput="ngModel"
+        [(ngModel)]="this.usersService.userDetails.email"
+        type="email"
+        name="email"
+        required
+      />
+      <mat-icon matSuffix> email </mat-icon>
+
+      <mat-error *ngIf="emailInput.touched && emailInput.errors?.pattern">
+        Email
+        <strong>not valid</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-wrapper">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Password </mat-label>
+      <input
+        matInput
+        #passwordInput="ngModel"
+        [(ngModel)]="this.usersService.userDetails.password"
+        type="password"
+        name="password"
+        required
+      />
+      <mat-icon matSuffix> lock </mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-wrapper" *ngIf="state == 'signup'">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Confirm Password </mat-label>
+      <input
+        matInput
+        #confirmPasswordInput="ngModel"
+        [(ngModel)]="this.usersService.userDetails.confirmPassword"
+        type="password"
+        name="confirmPassword"
+        required
+      />
+      <mat-icon matSuffix> lock_open </mat-icon>
+
+      <mat-error
+        *ngIf="
+          !confirmPasswordInput.pristine &&
+          this.usersService.userDetails.confirmPassword !=
+            this.usersService.userDetails.password
+        "
+      >
+        Passwords
+        <strong>doesn't match</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-error *ngIf="!loginForm.focused">{{ errorMsg }}</mat-error>
+
+  <!------------------>
+
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="
+      loginForm.form.invalid ||
+      this.stateService.isLoggedIn ||
+      (state == 'signup' &&
+        this.usersService.userDetails.confirmPassword !=
+          this.usersService.userDetails.password)
+    "
+  >
+    <span matTooltip="{{ loginForm.invalid ? 'Form is invalid' : '' }}">
+      {{ state | uppercase }}
+    </span>
+  </button>
+</form>
+
+<!-- Second step SIGNUP -->
+<ng-template #secondStepRegister>
+  <form #signupForm="ngForm" class="form login-form" (submit)="signup()">
+    <h5>Almost there..</h5>
+
+    <!-- FIRST NAME -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard">
+        <mat-label> First Name </mat-label>
+        <input
+          matInput
+          #firstNameInput="ngModel"
+          [(ngModel)]="this.usersService.userDetails.firstName"
+          type="text"
+          name="firstName"
+          required
+        />
+        <mat-icon matSuffix> perm_identity </mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- LAST NAME -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard">
+        <mat-label> Last Name </mat-label>
+        <input
+          matInput
+          #lastNameInput="ngModel"
+          [(ngModel)]="this.usersService.userDetails.lastName"
+          type="text"
+          name="lastName"
+          required
+        />
+        <mat-icon matSuffix> family_restroom </mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- CITY -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard">
+        <mat-label> City </mat-label>
+
+        <mat-select
+          class="dropdown"
+          #cityOption="ngModel"
+          [(ngModel)]="this.usersService.userDetails.city"
+          (change)="this.usersService.selectCity($event)"
+          name="city"
+          required
+        >
+          <mat-option
+            *ngFor="let city of this.usersService.cities"
+            [value]="city"
+          >
+            {{ city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- STREET -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard">
+        <mat-label> Street </mat-label>
+        <input
+          matInput
+          #streetInput="ngModel"
+          [(ngModel)]="this.usersService.userDetails.street"
+          type="text"
+          name="street"
+          required
+        />
+        <mat-icon matSuffix> maps_home_work </mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!------------------>
+    <div class="btns">
+      <button
+        class="btn btn-back"
+        (click)="this.usersService.firstStepRegisterCompleted = false"
+      >
+        <i class="fas fa-arrow-circle-left"></i>
+      </button>
+
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="signupForm.form.invalid"
+      >
+        <span matTooltip="{{ signupForm.invalid ? 'Form is invalid' : '' }}">
+          DONE
+        </span>
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<!-- Switch states -->
+<p *ngIf="state == 'login'; else signUp">
+  Not a member?
+  <span (click)="switchState()">Sign up</span>
+  now
+</p>
+
+<ng-template #signUp>
+  <p>
+    Already a member?
+    <span (click)="switchState()">Log in</span>
+  </p>
+</ng-template>

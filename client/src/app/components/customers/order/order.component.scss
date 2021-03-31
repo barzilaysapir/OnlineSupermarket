@@ -1,0 +1,34 @@
+@import "../../../../styles/base";
+
+.order {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1.5rem 0;
+  border: 5px solid #fff;
+  background-color: rgba(255, 241, 247, 0.6);
+
+  @media only screen and (max-width: $bp-small) {
+    padding-bottom: 4rem;
+  }
+}
+
+.order-form {
+  position: relative;
+  width: 70%;
+  min-width: 5rem;
+  margin: auto;
+
+  h4 {
+    transform: translateY(15px);
+  }
+
+  ::placeholder {
+    @media only screen and (max-width: $bp-small) {
+      font-size: small;
+    }
+  }
+
+  button {
+    margin: 2rem;
+  }
+}

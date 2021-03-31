@@ -1,0 +1,27 @@
+<div class="product-card">
+  
+  <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
+
+  <div class="content">
+    <h4 class="title">{{ product.name | titlecase }}</h4>
+    <h4 class="price">{{ product.price }} ₪</h4>
+  </div>
+
+  <!---------------------------->
+  
+<button
+  #customerBtn
+  *ngIf="this.stateService.path == 'customers'; else adminBtn"
+  class="btn card-btn"
+  (click)="showModal(product)"
+  >
+  <i class="fa fa-cart-arrow-down"></i>
+</button>
+
+<ng-template #adminBtn>
+  <button class="btn card-btn" (click)="editProduct()">
+    <i class="far fa-edit"></i>
+  </button>
+</ng-template>
+
+</div>

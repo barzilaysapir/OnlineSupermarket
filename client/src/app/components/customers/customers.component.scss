@@ -1,0 +1,44 @@
+@import "../../../styles/base";
+@import "../../../styles/animations";
+
+:host {
+  @extend %parent-component;
+}
+
+aside {
+  &.closed {
+    animation: closeCartAnimation 1s forwards;
+
+    @media only screen and (max-width: $bp-small) {
+      animation: mobileCloseCartAnimation 1s forwards;
+    }
+  }
+
+  &:not(.closed) {
+    animation: openCartAnimation 1s forwards;
+
+    @media only screen and (max-width: $bp-small) {
+      animation: mobileOpenCartAnimation 1s forwards;
+    }
+  }
+}
+
+main {
+  overflow-y: scroll;
+
+  &.closed {
+    animation: reduceMainSectionAnimation 1s forwards;
+  
+    @media only screen and (max-width: $bp-small) {
+      animation: mobileCloseMainSection 1s forwards;
+    }
+  }
+  
+  &:not(.closed) {
+    animation: spreadMainSectionAnimation 1s forwards;
+  
+    @media only screen and (max-width: $bp-small) {
+      animation: mobileOpenMainSection 1s forwards;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+<div class="app-bg" (window:resize)="this.stateService.getScreenSize($event)">
+  <div class="circle right"></div>
+  <div class="circle left"></div>
+
+  <div class="app-content">
+    <header>
+      <app-header></app-header>
+    </header>
+
+    <main class="dynamic">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  
+</div>

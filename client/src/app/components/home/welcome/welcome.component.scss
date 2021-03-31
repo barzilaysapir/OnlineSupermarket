@@ -1,0 +1,108 @@
+@import "../../../../styles/base";
+
+.welcome-content {
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 0 0.5rem 4rem 0.5rem;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    text-align: center;
+  }
+}
+
+header {
+  font-size: x-large;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: large;
+  }
+
+  hr {
+    border: 0;
+    height: 1px;
+    width: 150%;
+    transform: translateX(-170px);
+    background-image: linear-gradient(
+      to right,
+      rgba($dark-primary, 0),
+      rgba($dark-primary, 0.5),
+      rgba($dark-primary, 0)
+    );
+  }
+
+  .subtitle {
+    font-family: $font-display;
+    font-weight: normal;
+
+    span {
+      font-weight: 100;
+      font-size: smaller;
+    }
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: large;
+  }
+}
+
+.market-state {
+  @media only screen and (max-width: $bp-smallest) {
+    margin: auto;
+  }
+
+  * {
+    font-family: $font-display;
+  }
+}
+
+footer {
+  p {
+    font-weight: bold;
+  }
+
+  button {
+    margin-top: 0.5rem;
+  }
+}
+
+.lolipop {
+  position: absolute;
+  bottom: -1rem;
+  right: -2rem;
+  height: 60%;
+  transform: rotateY(180deg);
+  filter: opacity(70%) drop-shadow(0 6mm 3mm $light-blue-alpha);
+
+  @media only screen and (max-width: $bp-largest) {
+    height: 50%;
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    height: 40%;
+    right: -0.5rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    right: -0.5rem;
+    height: 33%;
+    top: -0.5rem;
+    transform: rotateY(0);
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    top: -0.2rem;
+    height: 22%;
+  }
+}

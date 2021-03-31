@@ -1,0 +1,142 @@
+.success-aside-cover {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 0 1rem 1rem 2rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.6s;
+
+  &.show {
+    opacity: 1;
+  }
+  
+  &:not(.show) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .fa-check {
+    font-size: 10rem;
+    color: rgba(19, 163, 19, 0.7);
+  }
+}
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  > div {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  > .form-field-wrapper {
+    width: 100%;
+    margin-top: 1rem;
+    transition: all 0.3s;
+    &:hover {
+      background-color: rgb(255, 241, 247);
+      border-radius: 0 1rem 0 1rem;
+
+      .mat-form-field-underline {
+        width: 95%;
+      }
+    }
+
+    input {
+      width: 90%;
+    }
+
+    input,
+    mat-select {
+      font-family: $font-display;
+      display: block;
+      border: 1px solid transparent;
+      padding-top: 0.7rem;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.btn {
+  &.btn-primary {
+    padding: 0.4rem 1.5rem 0.2rem;
+    border: 1px solid transparent;
+    border-radius: 1.5rem;
+    background-color: $light-blue;
+    box-shadow: 0 3px 5px $light-blue-alpha;
+
+    color: white;
+    font-size: large;
+    font-weight: bold;
+
+    display: block;
+    margin: 1rem auto 2rem auto;
+    transition: all 0.3s;
+
+    &:disabled {
+      opacity: 0.8;
+      background-color: rgba($light-blue, 0.5);
+      box-shadow: 0 2px 5px $light-blue-alpha;
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+
+      &:hover {
+        padding: 0.4rem 2.5rem 0.2rem;
+      }
+    }
+  }
+
+  &.btn-secondary {
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    font-family: $font-display;
+    font-size: small;
+    font-weight: 500;
+    border: 2px solid transparent;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 0 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      border-radius: 1rem 0;
+    }
+
+    i {
+      padding-right: 0.5rem;
+    }
+  }
+}
+
+.btns {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .btn-back {
+    position: absolute;
+    left: 0;
+    background-color: transparent;
+    border: none;
+    font-size: x-large;
+    color: $dark-primary;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+      color: $light-blue;
+    }
+  }
+}

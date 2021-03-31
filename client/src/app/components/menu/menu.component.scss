@@ -1,0 +1,40 @@
+@import "../../../styles/base";
+
+nav {
+  width: 102%;
+  transform: translateX(-2%);
+  padding: 1rem 0.8rem 0 0.8rem;
+  border-bottom: 2px solid $dark-primary;
+  background-color: rgba($dark-primary, 0.15);
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding-top: 0;
+    }
+
+  .navlinks {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    transform: translateY(5px);
+
+    .navlink {
+      padding: 0 .2rem;
+      font-size: large;
+      cursor: pointer;
+
+      &.active {
+        font-weight: bolder;
+      }
+
+      @media only screen and (max-width: $bp-medium) {
+        font-size: medium;
+      }
+
+      @media only screen and (max-width: $bp-smallest) {
+        padding: 0 .6rem;
+      }
+
+    }
+  }
+}

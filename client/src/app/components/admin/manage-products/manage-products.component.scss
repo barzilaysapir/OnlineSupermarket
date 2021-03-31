@@ -1,0 +1,23 @@
+@import "../../../../styles/base";
+
+:host {
+  @extend %aside-component;
+  padding: 1rem;
+}
+
+p {
+  position: relative;
+  top: 30%;
+}
+
+.manage-form {
+  padding: 0 0.5rem;
+
+  > mat-error {
+    padding-top: 1rem;
+  }
+}
+
+.btn {
+  margin-top: 2rem;
+}

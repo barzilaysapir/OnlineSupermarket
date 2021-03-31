@@ -1,0 +1,8 @@
+<nav>
+    <ul class="navlinks">
+        <li *ngFor="let category of this.categoriesService.allCategories" [ngClass]="setClass(category)"
+            (click)="navigate(category)">
+            {{ category.name | titlecase }}
+        </li>
+    </ul>
+</nav>

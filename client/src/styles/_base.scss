@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap");
+
+// COLOR VARIABLES
+$dark-primary: #433856;
+$pink: #fd74cd;
+$pink-light: #ffc0e8;
+$yellow: #fffe75;
+$light-blue: #2f99f7;
+$light-blue-alpha: #527fa36e;
+
+// FONT VARIABLES
+$font-primary: "Atma", cursive;
+$font-display: "Syne", sans-serif;
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px
+$bp-large: 62.5em; // 1000px
+$bp-medium: 50em; // 800px;
+$bp-small: 37.5em; // 600px;
+$bp-smallest: 22.5em; // 360px;
+
+// Inheritance
+%parent-component {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+%aside-component {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 1rem;
+}

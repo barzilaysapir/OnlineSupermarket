@@ -1,0 +1,61 @@
+<div class="modal">
+  <!----------------------->
+
+  <div
+    #receiptModal
+    *ngIf="this.stateService.isOrderCompleted; else productModal"
+    class="modal-content receipt"
+  >
+    <span class="close" (click)="backHome()">&times;</span>
+
+    <h1>Thank you for your purchase! 🍰</h1>
+
+    <a
+      [href]="receiptTrustedUrl"
+      download="Your SweeterMarket receipt from {{
+        order.orderDate.toISOString().split('T')[0]
+      }}.txt"
+    >
+      Click here to download receipt
+    </a>
+
+    <button class="btn btn-primary" (click)="backHome()">OK</button>
+  </div>
+
+  <!---------------------------------------->
+
+  <ng-template #productModal>
+    <div class="modal-content">
+      <span class="close" (click)="closeWithoutUpdate()"
+        >&times;</span
+      >
+
+      <div class="product-img">
+        <img src="{{ product.imageUrl }}" alt="{{ product.name }}" />
+      </div>
+
+      <div class="product-details">
+        <h2>{{ product.name | titlecase }}</h2>
+        <h4>{{ product.price }} ₪</h4>
+
+        <div class="amount">
+          <label for="amount">Amount: </label>
+          <input
+            type="number"
+            min="0"
+            [(ngModel)]="product.amount"
+            value="{{ product.amount }}"
+            name="amount"
+          />
+        </div>
+
+        <mat-error>{{ errorMsg }}</mat-error>
+        <button class="btn btn-primary btn-modal" (click)="onUpdateCartClick()">
+          Update Cart
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!----------------------->
+</div>

@@ -1,0 +1,7 @@
+<aside [ngClass]="{ closed: !this.stateService.isAsidePanelOpen }">
+  <app-manage-products></app-manage-products>
+</aside>
+
+<main [ngClass]="{ closed: this.stateService.isAsidePanelOpen }">
+  <app-products></app-products>
+</main>

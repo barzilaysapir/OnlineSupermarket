@@ -1,0 +1,19 @@
+<img
+  src="{{ item.imageUrl }}"
+  alt="{{ item.name }}"
+  *ngIf="this.stateService.isAsidePanelOpen"
+/>
+
+<ul class="item-details">
+  <li [ngClass]="highlightSearchResults()">
+    {{ item.name | titlecase }}
+  </li>
+  <li>amount: {{ item.amount }}</li>
+  <li>{{ item.price }} ₪</li>
+</ul>
+
+<i
+  class="fas fa-times"
+  *ngIf="!this.stateService.isOrdering"
+  (click)="removeFromCart()"
+></i>

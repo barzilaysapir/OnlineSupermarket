@@ -1,0 +1,100 @@
+// Cart
+@keyframes closeCartAnimation {
+  from {
+    width: 30%;
+  }
+  to {
+    width: 20%;
+  }
+}
+
+@keyframes openCartAnimation {
+  from {
+    width: 20%;
+  }
+  to {
+    width: 30%;
+  }
+}
+
+
+// Main (products)
+@keyframes spreadMainSectionAnimation {
+  from {
+    width: 70%;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+@keyframes reduceMainSectionAnimation {
+  from {
+    width: 80%;
+  }
+  to {
+    width: 70%;
+  }
+}
+
+/* =============
+      MOBILE
+  =============  
+
+  customer */
+@keyframes mobileCloseCartAnimation {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 8%;
+  }
+}
+
+@keyframes mobileOpenCartAnimation {
+  from {
+    width: 8%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes mobileOpenMainSection {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 95%;
+  }
+}
+
+@keyframes mobileCloseMainSection {
+  from {
+    width: 95%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* =============
+      admin
+  ============= */
+  @keyframes mobileCloseManageForm {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes mobileOpenManageForm {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}

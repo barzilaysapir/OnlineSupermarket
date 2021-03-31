@@ -1,0 +1,23 @@
+@import "../../../styles/base";
+@import "../../../styles/animations";
+
+:host {
+  @extend %parent-component;
+}
+
+aside {
+  @media only screen and (max-width: $bp-small) {
+    &.closed {
+      animation: mobileCloseManageForm 1s forwards;
+    }
+
+    &:not(.closed) {
+      animation: mobileOpenManageForm 1s forwards;
+    }
+  }
+}
+
+main {
+  overflow-y: scroll;
+  @extend aside;
+}

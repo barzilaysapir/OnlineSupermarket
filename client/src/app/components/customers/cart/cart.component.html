@@ -1,0 +1,84 @@
+<!-- SUCCESS COVER -->
+<div [ngClass]="this.stateService.setSuccessCoverClass()">
+  <i class="fas fa-check"></i>
+</div>
+<!------------------->
+
+<div class="cart-content">
+
+  <header>
+    <h1>Cart</h1>
+
+    <div
+      class="search-wrapper"
+      *ngIf="this.stateService.isOrdering; else emptyCartBtn"
+    >
+      <input
+        [(ngModel)]="searchInput"
+        (ngModelChange)="searchInCart()"
+        class="search-input"
+        type="text"
+        placeholder="Search in cart"
+      />
+      <i class="fas fa-search"></i>
+    </div>
+
+    <ng-template #emptyCartBtn>
+      <button class="btn" (click)="emptyCart()">
+        <i class="fas fa-trash"> </i>
+        empty
+      </button>
+    </ng-template>
+  </header>
+
+  <!------------------->
+
+  <p *ngIf="this.cartsService.cartItems?.length == 0; else cartItems">
+    Go make your first purchase!
+  </p>
+
+  <ng-template #cartItems>
+    <div class="cart-list">
+      <app-cart-item
+        *ngFor="let item of this.cartsService.cartItems"
+        [item]="item"
+        [searchInput]="searchInput"
+      >
+      </app-cart-item>
+    </div>
+  </ng-template>
+
+  <!------------------->
+
+  <footer>
+    <h3>Total: {{ this.cartsService.total }} ₪</h3>
+    <button
+      *ngIf="!this.stateService.isOrdering"
+      class="btn btn-primary"
+      [disabled]="this.cartsService.cartItems?.length == 0"
+      (click)="moveToOrder()"
+    >
+      {{ "Order" | uppercase }}
+    </button>
+
+    <button
+      *ngIf="this.stateService.isOrdering"
+      (click)="backShopping()"
+      class="btn btn-primary"
+    >
+      Back Shopping
+    </button>
+  </footer>
+
+</div>
+
+<!------------------->
+
+<button
+  class="aside-closing-btn"
+  (click)="
+    this.stateService.isAsidePanelOpen = !this.stateService.isAsidePanelOpen
+  "
+>
+  <i [ngClass]="this.stateService.setIconClass()"></i>
+</button>

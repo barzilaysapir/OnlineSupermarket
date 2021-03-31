@@ -1,0 +1,125 @@
+<!-- SUCCESS COVER -->
+<div [ngClass]="this.stateService.setSuccessCoverClass()">
+  <i class="fas fa-check"></i>
+</div>
+<!------------------->
+
+<header>
+  <h1>Manage Products</h1>
+
+  <button
+    class="btn btn-secondary"
+    *ngIf="this.stateService.manageState == 'none'; else backBtn"
+    (click)="this.stateService.manageState = 'addingNewProduct'"
+  >
+    <i class="fas fa-plus"> </i>
+    Add New Product
+  </button>
+
+  <ng-template #backBtn>
+    <button class="btn btn-secondary" (click)="closeManageForm()">
+      <i class="fas fa-arrow-circle-left"> </i>
+      Back
+    </button>
+  </ng-template>
+</header>
+
+<p *ngIf="this.stateService.manageState == 'none'">
+  Click on a product to edit it.
+</p>
+
+<!-- MANAGE FORM -->
+<form
+  #manageForm="ngForm"
+  class="form manage-form"
+  (submit)="onSubmitForm()"
+  *ngIf="this.stateService.manageState != 'none'"
+>
+  <div class="form-field-wrapper">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Name </mat-label>
+      <input
+        matInput
+        type="text"
+        name="name"
+        #nameInput="ngModel"
+        [(ngModel)]="this.productsService.currentProduct.name"
+        required
+      />
+      <mat-icon matSuffix> text_fields </mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-wrapper">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Price </mat-label>
+      <input
+        matInput
+        type="number"
+        name="price"
+        min="0"
+        #priceInput="ngModel"
+        [(ngModel)]="this.productsService.currentProduct.price"
+        required
+      />
+      <mat-icon matSuffix> attach_money </mat-icon>
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-wrapper">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Image Url </mat-label>
+      <input
+        matInput
+        #imageUrl
+        type="text"
+        name="imageUrl"
+        #imageUrlInput="ngModel"
+        [(ngModel)]="this.productsService.currentProduct.imageUrl"
+        required
+      />
+      <mat-icon matSuffix> image </mat-icon>
+      <mat-hint
+        align="end"
+        [ngStyle]="{ color: imageUrl.value.length > 250 ? 'red' : '#333' }"
+        >{{ imageUrl.value.length }} / 250</mat-hint
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="form-field-wrapper">
+    <mat-form-field color="accent" appearance="standard">
+      <mat-label> Category </mat-label>
+
+      <mat-select
+        class="dropdown"
+        [(ngModel)]="this.productsService.currentProduct.categoryId"
+        name="categories"
+        required
+      >
+        <mat-option
+          *ngFor="let category of this.categoriesService.allCategories"
+          [value]="category.id"
+        >
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-error *ngIf="manageForm.form.touched && manageForm.form.invalid">
+    Please make sure all fields are filled in correctly
+  </mat-error>
+
+  <mat-error *ngIf="errorMsg != ''">
+    {{ errorMsg }}
+  </mat-error>
+
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="manageForm.form.invalid"
+  >
+    SAVE
+  </button>
+</form>

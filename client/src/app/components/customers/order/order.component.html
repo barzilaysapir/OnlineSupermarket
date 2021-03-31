@@ -1,0 +1,111 @@
+<div class="order">
+  <app-modal *ngIf="this.stateService.isOrderCompleted" [order]="orderDetails">
+  </app-modal>
+
+  <form
+    #orderForm="ngForm"
+    [formGroup]="orderFormGroup"
+    class="form order-form"
+    (submit)="order()"
+  >
+    <h1>Order</h1>
+    <h4>Shipping Details</h4>
+
+    <!-- CITY INPUT -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard">
+        <mat-label>City</mat-label>
+        <mat-select
+          class="dropdown"
+          [formControl]="city"
+          (change)="this.usersService.selectCity($event)"
+        >
+          <mat-option
+            *ngFor="let city of this.usersService.cities"
+            [value]="city"
+          >
+            {{ city }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- STREET INPUT -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard" floatLabel="always">
+        <mat-label>Street</mat-label>
+        <input
+          matInput
+          type="text"
+          name="street"
+          placeholder="Double click to fill with your residence address"
+          [formControl]="street"
+          (dblclick)="this.street.patchValue(userAddress.street)"
+        />
+        <mat-icon matSuffix> maps_home_work </mat-icon>
+
+        <mat-error *ngIf="street.hasError('required')">
+          Street is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- SHIP DATE INPUT -->
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard">
+        <mat-label>Shipping Date</mat-label>
+        <input
+          matInput
+          [min]="currentDate"
+          [max]="maxDate"
+          [formControl]="shippingDate"
+          [matDatepicker]="shipDate"
+          [matDatepickerFilter]="busyDatesFilter"
+          (click)="shipDate.open()"
+        />
+        <mat-datepicker-toggle matSuffix [for]="shipDate"> shipping </mat-datepicker-toggle>
+
+        <mat-datepicker [dateClass]="busyDatesStyle" touchUi #shipDate>
+        </mat-datepicker>
+
+      </mat-form-field>
+    </div>
+
+    <!-- CREDIT CARD INPUT -->
+    <h4>Payment</h4>
+
+    <div class="form-field-wrapper">
+      <mat-form-field color="accent" appearance="standard" floatLabel="always">
+        <mat-label>Credit Card</mat-label>
+        <input
+          matInput
+          type="number"
+          name="creditCard"
+          placeholder="Ex. 4567"
+          [formControl]="creditCard"
+          #tooltip="matTooltip"
+          matTooltip="Last 4 digits of your credit card"
+        />
+        <mat-icon matSuffix> credit_card </mat-icon>
+
+        <mat-error *ngIf="creditCard.hasError('pattern')">
+          Last 4 digits only
+        </mat-error>
+        <mat-error *ngIf="creditCard.hasError('required')">
+          Credit card is  required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <button
+      class="btn btn-primary"
+      type="submit"
+      [disabled]="orderForm.form.invalid"
+    >
+      <span matTooltip="{{ orderForm.invalid ? 'Form is invalid' : '' }}">
+        DONE
+      </span>
+    </button>
+  </form>
+</div>

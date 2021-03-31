@@ -1,0 +1,57 @@
+<img class="lolipop" src="https://i.imgur.com/tAPvzJE.png" alt="lolipop" />
+
+<!------------------->
+
+<div class="welcome-content">
+  <header>
+    <span *ngIf="this.usersService.userFirstName"
+      >{{ this.usersService.userFirstName | titlecase }},</span
+    >
+    <h1 class="title">Welcome to SweeterMarket!</h1>
+    <h4 class="subtitle">
+      Most sweetest supermarket on<span>(line)</span> planet.
+    </h4>
+  </header>
+
+  <!------------------->
+
+  <div class="market-state">
+    <p>
+      <span class="amount">{{ amountOfProducts }}</span> available products in
+      our store.
+    </p>
+    <p>
+      <span class="amount">{{ amountOfOrders }}</span> orders submitted in our
+      store.
+    </p>
+  </div>
+
+  <!------------------->
+
+  <footer>
+    <section class="customer-cart" *ngIf="this.cartsService.cart?.id">
+      <h3 *ngIf="this.cartsService.cart.status == 'open'">
+        You have an open cart from {{ this.cartsService.cart.createDate }}
+      </h3>
+      <h3 *ngIf="this.cartsService.cart.status == 'close'">
+        Your last purchase was on {{ this.cartsService.cart.createDate }}
+      </h3>
+    </section>
+
+    <button
+      class="btn btn-primary"
+      [disabled]="!this.stateService.isLoggedIn"
+      (click)="onShoppingClick()"
+    >
+      <span
+        *ngIf="!this.stateService.isLoggedIn"
+        matTooltip="You're not logged in"
+      >
+        {{ setCallToAction() | uppercase }} <i class="fas fa-shopping-cart"></i>
+      </span>
+      <span *ngIf="this.stateService.isLoggedIn">
+        {{ setCallToAction() | uppercase }} <i class="fas fa-shopping-cart"></i>
+      </span>
+    </button>
+  </footer>
+</div>

@@ -1,0 +1,18 @@
+@import "../../../styles/base";
+
+:host {
+  @extend %parent-component;
+}
+
+@media only screen and (max-width: $bp-small) {
+  aside {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  main {
+    @extend aside;
+    padding: 2rem;
+  }
+}

@@ -1,0 +1,9 @@
+<aside
+  *ngIf="!this.stateService.isMobileScreen || !this.stateService.isLoggedIn"
+>
+  <app-login-signup></app-login-signup>
+</aside>
+
+<main *ngIf="!this.stateService.isMobileScreen || this.stateService.isLoggedIn">
+  <app-welcome></app-welcome>
+</main>

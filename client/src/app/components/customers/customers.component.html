@@ -1,0 +1,14 @@
+<aside
+  [ngClass]="{ closed: !this.stateService.isAsidePanelOpen }"
+  [ngStyle]="{
+    'border-radius': this.stateService.isOrdering
+      ? '0 0 0 2rem'
+      : '0 1rem 1rem 2rem'
+  }"
+>
+  <app-cart></app-cart>
+</aside>
+
+<main [ngClass]="{ closed: this.stateService.isAsidePanelOpen }">
+  <router-outlet></router-outlet>
+</main>

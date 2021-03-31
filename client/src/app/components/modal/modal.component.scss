@@ -1,0 +1,143 @@
+@import "../../../styles/base";
+
+// BG
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(206, 151, 170, 0.5);
+  border-radius: 2rem 2rem 0 2rem;
+
+  @media only screen and (max-width: $bp-small) {
+    border-radius: 0;
+  }
+}
+
+// MODAL
+.modal-content {
+  position: relative;
+  top: 50%;
+  margin: auto;
+  padding: 2.2rem;
+  width: fit-content;
+  max-width: 55%;
+  display: flex;
+  transform: translateY(-50%);
+  border-radius: 1rem;
+  background-color: #fefefe;
+  box-shadow: 0 0 5px rgba(119, 119, 119, 0.5);
+  text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    max-width: 80%;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  &.receipt {
+    flex-direction: column;
+    a {
+      font-size: large;
+    }
+    .btn {
+      margin: 1rem auto 0;
+    }
+  }
+
+  .close {
+    color: #aaa;
+    font-family: $font-display;
+    font-size: xx-large;
+    font-weight: bold;
+    position: absolute;
+    right: 1.3rem;
+    top: 0.3rem;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      color: $dark-primary;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      -webkit-text-stroke: 2px #333;
+      color: #333;
+      background-color: rgb(255, 255, 255);
+      padding: 0 1rem;
+      border-radius: 50%;
+      top: 0.3rem;
+      right: 0.3rem;
+    }
+  }
+}
+
+.product-img {
+  padding: 2px 16px 2px 2px;
+  max-width: 55%;
+  height: 100%;
+  margin: auto;
+
+  @media only screen and (max-width: $bp-small) {
+    max-width: 100%;
+    padding: .3rem;
+  }
+
+  img {
+    max-height: 40vh;
+    border-radius: 0.5rem;
+    max-width: 100%;
+  }
+}
+
+.product-details {
+  width: 50%;
+  padding: 2px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  @media only screen and (max-width: $bp-small) {
+    width: 100%;
+
+    *:not(:last-child) {
+      margin-bottom: 0.3rem;
+    }
+  }
+}
+
+.amount {
+  text-align: center;
+  * {
+    font-size: large;
+  }
+
+  input[type="number"] {
+    font-family: $font-primary;
+    margin-left: 0.5rem;
+    padding-left: 0.5rem;
+    width: 30%;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 2px 2px $light-blue-alpha;
+
+    &::-webkit-inner-spin-button {
+      appearance: auto;
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+.btn-modal {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}

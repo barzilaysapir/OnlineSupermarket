@@ -1,0 +1,22 @@
+<div class="left">
+  <h1 class="heading">SweeterMarket <i class="fa fa-ice-cream"></i></h1>
+
+  <h4 *ngIf="this.usersService.userFirstName; else stranger">
+    <span>
+      Hello, {{ this.usersService.userFirstName | titlecase }}. &nbsp;&nbsp;
+    </span>
+    Not you? <span (click)="logout()">Log out</span>
+  </h4>
+
+  <ng-template #stranger>
+    <h4>Hello, stranger.</h4>
+  </ng-template>
+</div>
+
+<div class="right">
+  <ul class="contact">
+    <li>Contact Us</li>
+    <li>Email: <span>sweeter@market.com</span></li>
+    <li>Phone: <span>+972-972-972-972</span></li>
+  </ul>
+</div>

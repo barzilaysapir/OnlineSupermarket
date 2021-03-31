@@ -1,0 +1,65 @@
+input {
+  outline: none;
+  transition: all 0.3s;
+}
+
+mat-error {
+  font-size: small;
+  font-weight: 200;
+  font-family: $font-display;
+  color: red;
+
+  span {
+    font-family: $font-display;
+    font-weight: bold;
+  }
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+mat-form-field {
+  position: relative;
+  width: 100%;
+
+  * {
+    // font-family: $font-display;
+    transition: all 0.3s;
+  }
+
+  mat-label,
+  input {
+    padding-left: 0.5rem !important;
+  }
+
+  mat-form-field-subscript-wrapper {
+    margin-top: 1rem;
+  }
+
+  mat-hint {
+    font-family: $font-display;
+  }
+}
+
+mat-select,
+.mat-datepicker-input {
+  cursor: pointer;
+}
+
+.mat-form-field-underline {
+  right: 0;
+  bottom: 0;
+}
+
+// Datepicker
+.diabled-days {
+  background: rgba(211, 211, 211, 0.7);
+  border-radius: 100%;
+}
+
+.mat-hint,
+.mat-error,
+.mat-error * {
+  margin-top: 1rem !important;
+}
