@@ -17,6 +17,14 @@
   }
 }
 
+@keyframes showImageAnimation {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 33%;
+  }
+}
 
 // Main (products)
 @keyframes spreadMainSectionAnimation {
@@ -81,7 +89,7 @@
 /* =============
       admin
   ============= */
-  @keyframes mobileCloseManageForm {
+@keyframes mobileCloseManageForm {
   from {
     width: 100%;
   }
