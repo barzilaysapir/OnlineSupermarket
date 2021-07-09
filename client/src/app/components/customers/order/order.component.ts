@@ -20,7 +20,6 @@ export class OrderComponent implements OnInit {
 
   public orderDetails: OrderDetails;
   public currentDate: Date;
-  public maxDate: Date;
   public datesToDisableArray: Date[];
   public userAddress: { city: string, street: string };
 
@@ -44,7 +43,6 @@ export class OrderComponent implements OnInit {
     this.orderDetails.city = this.usersService.userDetails.city;
     this.datesToDisableArray = [];
     this.currentDate = new Date();
-    this.maxDate = new Date(new Date().getFullYear() + 0, 4, 1);
   }
 
   ngOnInit(): void {
