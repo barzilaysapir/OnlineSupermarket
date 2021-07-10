@@ -1,2 +1,6 @@
 # Local Netlify folder
 .netlify
+server/public
+server/node_modules
+client/dist
+client/node_modules
